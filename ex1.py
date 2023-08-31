@@ -13,7 +13,6 @@ def imprime_tabuleiro():
     for casa in tabuleiro:
         lista_formatada = ' | '.join(
             [f'\033[91mX\033[0m' if c == 'X' else f'\033[94mO\033[0m' if c == 'O' else str(c) for c in casa])
-        # lista_formatada = ' | '.join(map(str, casa))
         print(lista_formatada)
         print("--+---+---+---")
 
@@ -49,19 +48,20 @@ jogador1 = 'X'
 jogador2 = 'O'
 
 while True:
-    limpar_tela()
+
     print(f"jogador {jogada%2 + 1}")
     imprime_tabuleiro()
-    # jogador = input("Digite a coordenada da jogada[linha][coluna]: ")
-    # linha, coluna = [int(posicao) for posicao in jogador.split()]
     try:
         linha = int(input("Digite a linha: "))
         coluna = int(input("Digite a coluna: "))
         if linha < 1 or linha > 4 or coluna < 1 or coluna > 4:
             print("Coordenada digitada está fora do limite do tabuleiro.")
+            sleep(2)
+            limpar_tela()
             continue
     except ValueError:
         print("Valor inválido\n")
+        sleep(1)
     else:
 
         try:
@@ -72,6 +72,7 @@ while True:
                     tabuleiro[linha-1][coluna-1] = jogador2
             else:
                 print("Casa já está ocupada")
+                sleep(1)
                 jogada -= 1
             jogada += 1
 
@@ -92,3 +93,4 @@ while True:
                 print("Deu velha")
                 sleep(5)
                 break
+    limpar_tela()
