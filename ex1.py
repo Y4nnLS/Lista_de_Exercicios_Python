@@ -1,3 +1,6 @@
+import os
+from time import sleep
+
 tabuleiro = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -30,11 +33,23 @@ def ganhou():
     return False
 
 
+def empate():
+    for linha in tabuleiro:
+        if 0 in linha:
+            return False
+    return True
+
+
+def limpar_tela():
+    os.system('cls')
+
+
 jogada = 0
 jogador1 = 'X'
 jogador2 = 'O'
 
 while True:
+    limpar_tela()
     print(f"jogador {jogada%2 + 1}")
     imprime_tabuleiro()
     # jogador = input("Digite a coordenada da jogada[linha][coluna]: ")
@@ -42,11 +57,13 @@ while True:
     try:
         linha = int(input("Digite a linha: "))
         coluna = int(input("Digite a coluna: "))
+        if linha < 1 or linha > 4 or coluna < 1 or coluna > 4:
+            print("Coordenada digitada está fora do limite do tabuleiro.")
+            continue
     except ValueError:
         print("Valor inválido\n")
     else:
 
-        print(jogada)
         try:
             if tabuleiro[linha-1][coluna-1] == 0:
                 if (jogada % 2+1) == 1:
@@ -61,8 +78,17 @@ while True:
         except IndexError:
             print("Valor inválido")
         else:
+
             if ganhou():
+                limpar_tela()
                 imprime_tabuleiro()
-                print(jogada)
                 print(f"{'[ O ]' if jogada%2+1 == 1 else '[ X ]'} ganhou")
+                # Caso rode no terminal, ele mantem a tela por 5 segundos antes de fechar o mesmo
+                sleep(5)
+                break
+            elif empate():
+                limpar_tela()
+                imprime_tabuleiro()
+                print("Deu velha")
+                sleep(5)
                 break
