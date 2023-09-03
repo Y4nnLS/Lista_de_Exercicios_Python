@@ -2,6 +2,9 @@ banco_usuarios = {}
 
 
 def menu():
+    """
+    Menu principal do programa que apresenta as opções de cadastras ou imprimir usuários e a opção de sair do programa
+    """
     print("\n+-------- MENU --------+")
     print("|[1] Cadastrar usuário |")
     print("|[2] Imprimir usuários |")
@@ -10,6 +13,9 @@ def menu():
 
 
 def menu_imprimir_usuario():
+    """
+    Menu de impressão dos usuários, com direito a filtros como nome, campos e valores
+    """
     print("\n+---------------- MENU ----------------+")
     print("|[1] Imprimir todos os usuários        |")
     print("|[2] Filtrar por nomes                 |")
@@ -23,9 +29,13 @@ campos_obrigatorios = []
 
 
 def definir_campos_obrigatorios():
+    """
+    Permite que o usuário defina os campos obrigatórios para cadastrar usuários
+    """
+
     global campos_obrigatorios
 
-    # Solicita ao usuário que insira os campos obrigatórios
+    # Pede para que o usuário insira o valor aos campos obrigatórios
     print("Definindo os campos obrigatórios\n")
     while True:
         campo_obrigatorio = input(
@@ -36,6 +46,13 @@ def definir_campos_obrigatorios():
 
 
 def cadastrar_usuario(*campos_obrigatorios):
+    """
+    Possibilita cadastrar um novo usuário com os campos obrigatórios e com campos adicionais
+    
+    *campos_obrigatorios (Args): são os campos obrigatorios previamente definidos
+
+    ele retorna um dicionario que representa o novo usuário que foi cadastrado
+    """
     novo_usuario = {}
     for campo in campos_obrigatorios:
         novo_usuario[campo] = input(f"Digite o {campo} do usuário: ")
@@ -55,6 +72,9 @@ def cadastrar_usuario(*campos_obrigatorios):
 
 
 def imprimir_usuarios():
+    """
+    Possibilita imprimir as informações dos usuários com diversas opções de filtragem
+    """
     menu_imprimir_usuario()
     op = int(input("Selecione uma das opções acima: "))
 
@@ -78,9 +98,9 @@ def imprimir_usuarios():
                 valor = input(f"Digite o valor para o campo '{campo}': ")
                 campos[campo] = valor
             for user in banco_usuarios.values():
-                satisfies_conditions = all(
+                satisfaz_condicoes = all(
                     str(user.get(campo)) == valor for campo, valor in campos.items())
-                if satisfies_conditions:
+                if satisfaz_condicoes:
                     usuarios_imprimir.append(user)
         case 4:
             nomes = input(
@@ -95,9 +115,9 @@ def imprimir_usuarios():
                 campos[campo] = valor
             for user in banco_usuarios.values():
                 if user["nome"] in nomes:
-                    satisfies_conditions = all(
+                    satisfaz_condicoes = all(
                         str(user.get(campo)) == valor for campo, valor in campos.items())
-                    if satisfies_conditions:
+                    if satisfaz_condicoes:
                         usuarios_imprimir.append(user)
         case 5:
             print("Saindo...")
@@ -111,6 +131,10 @@ def imprimir_usuarios():
 
 
 def main():
+    """
+    Função principal para controlar todo o fluxo do programa
+    """
+
     definir_campos_obrigatorios()
     cadastrar_usuario(*campos_obrigatorios)
 
