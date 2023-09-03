@@ -133,7 +133,7 @@ impressão com opções para filtrar os usuários com base no nome, campos e val
 - `definir_campos_obrigatorios()`: Permite que o usuário defina os campos obrigatórios para cadastrar usuários
 - `cadastrar_usuario()`: Permite cadastrar um novo usuário com os campos obrigatórios e com campos adicionais
 - `imprimir_usuarios()`: Possibilita imprimir as informações dos usuários com diversas opções de filtragem
-- `main`: Controla o fluxo do programa.
+- `main()`: Controla o fluxo do programa.
 - Estruturas de controle "if", "while" e "try...except" para interagir com o usuário e tomar decisões.
 
 #### EXEMPLO:
