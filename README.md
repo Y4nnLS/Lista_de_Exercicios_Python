@@ -1,10 +1,11 @@
 # Lista de Exercicios Python
 Aluno: Yann Lucas Saito da Luz
-
+  
 ## ex1.py
 1. Crie uma versão do jogo da velha 4x4. As regras são as mesmas da versão 3x3.
 <p>Jogo da Velha em Python
-
+<a href="ex1.py">ex1.py</a>
+  
 Implementação básica de uma jogo da velha 4x4, seguindo as mesmas regras da versão 3x3. Ele permite que os dois jogadores joguem alternadamente até que um deles vença ou de velha.
 
 #### Estratégia:
@@ -34,7 +35,8 @@ quadrado).
 
 <p>
 Jogo da Velha - Implementação em Python
-
+<a href="ex2.py">ex2.py</a>
+  
 Este é um programa que implementa o jogo da velha em um tabuleiro NxN, onde N é definido pelo usuário.
 Os jogadores são representados por 'X' (vermelho) e 'O' (azul). O jogo verifica se há um vencedor ou empate
 e imprime o resultado final.
@@ -70,7 +72,8 @@ já foram descobertas, as letras já tentadas no teclado e assim por diante. Ate
 formatação.
 <p>
 Jogo Termoo
-
+<a href="ex3.py">ex3.py</a>
+  
 Este é um jogo de adivinhação de palavras. O jogador tem um número limitado de tentativas para adivinhar a palavra secreta.
 
 #### Estratégia:
@@ -108,9 +111,11 @@ Este é um jogo de adivinhação de palavras. O jogador tem um número limitado 
 ## ex4.p
 4. Prática de dicionários
 <p>
+  
 Este programa permite o cadastro e impressão de informações de usuários.
 O programa tem a capacidade de definir campos obrigatórios e campos adicionais, além de opções de filtragem
 para imprimir os dados dos usuários de acordo com critérios específicos.
+<a href="ex4.py">ex4.py</a>
   
 #### Estratégia:
 -------------------
