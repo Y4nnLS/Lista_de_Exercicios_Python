@@ -1,6 +1,7 @@
 import os
 from time import sleep
 
+# Inicializa o tabuleiro 4x4 preenchido com 0
 tabuleiro = [
     [0, 0, 0, 0],
     [0, 0, 0, 0],
@@ -10,6 +11,12 @@ tabuleiro = [
 
 
 def imprime_tabuleiro():
+    """
+    Imprime o tabuleiro atualizado com o símbolo de cada jogador.
+
+    'X' é representado na cor vermelha e 'O' é representado na cor azul.
+    As casas vazias são representadas por '0'.
+    """
     for casa in tabuleiro:
         lista_formatada = ' | '.join(
             [f'\033[91mX\033[0m' if c == 'X' else f'\033[94mO\033[0m' if c == 'O' else str(c) for c in casa])
@@ -18,6 +25,11 @@ def imprime_tabuleiro():
 
 
 def ganhou():
+    """
+    Verifica se um jogador ganhou o jogo.
+    Ele retorna verdadeiro caso um dos jogadores ganhe a partida, caso contrário ele retorna Falso.
+    """
+
     for linha in tabuleiro:
         if linha[0] == linha[1] == linha[2] == linha[3] != 0:
             return True
@@ -33,6 +45,11 @@ def ganhou():
 
 
 def empate():
+    """
+    Verifica se o jogo terminou em empate.
+    Ele retorna verdadeiro caso o jogo tenha um empate, caso contrário ele retorna Falso.
+    """
+
     for linha in tabuleiro:
         if 0 in linha:
             return False
@@ -40,57 +57,73 @@ def empate():
 
 
 def limpar_tela():
+    """
+    Limpa a tela do console
+    """
     os.system('cls')
 
 
-jogada = 0
-jogador1 = 'X'
-jogador2 = 'O'
+def jogar():
+    """
+    Função main do jogo da velha.
 
-while True:
+    Essa função inicia o jogo, faz o gerenciamento das jogadas dos jogadores,
+    verifica se há um vencedor ou empate e imprime o resultado final.
+    """
 
-    print(f"jogador {jogada%2 + 1}")
-    imprime_tabuleiro()
-    try:
-        linha = int(input("Digite a linha: "))
-        coluna = int(input("Digite a coluna: "))
-        if linha < 1 or linha > 4 or coluna < 1 or coluna > 4:
-            print("Coordenada digitada está fora do limite do tabuleiro.")
-            sleep(2)
-            limpar_tela()
-            continue
-    except ValueError:
-        print("Valor inválido\n")
-        sleep(1)
-    else:
+    # Inicializa as variáveis do jogo
+    jogada = 0
+    jogador1 = 'X'
+    jogador2 = 'O'
 
+    while True:
+
+        print(f"jogador {jogada%2 + 1}")
+        imprime_tabuleiro()
         try:
-            if tabuleiro[linha-1][coluna-1] == 0:
-                if (jogada % 2+1) == 1:
-                    tabuleiro[linha-1][coluna-1] = jogador1
-                else:
-                    tabuleiro[linha-1][coluna-1] = jogador2
-            else:
-                print("Casa já está ocupada")
-                sleep(1)
-                jogada -= 1
-            jogada += 1
-
-        except IndexError:
-            print("Valor inválido")
+            linha = int(input("Digite a linha: "))
+            coluna = int(input("Digite a coluna: "))
+            if linha < 1 or linha > 4 or coluna < 1 or coluna > 4:
+                print("Coordenada digitada está fora do limite do tabuleiro.")
+                sleep(2)
+                limpar_tela()
+                continue
+        except ValueError:
+            print("Valor inválido\n")
+            sleep(1)
         else:
 
-            if ganhou():
-                limpar_tela()
-                imprime_tabuleiro()
-                print(f"{'[ O ]' if jogada%2+1 == 1 else '[ X ]'} ganhou")
-                # Caso rode no terminal, ele mantem a tela por 5 segundos antes de fechar o mesmo
-                sleep(5)
-                break
-            elif empate():
-                limpar_tela()
-                imprime_tabuleiro()
-                print("Deu velha")
-                sleep(5)
-                break
-    limpar_tela()
+            try:
+                if tabuleiro[linha-1][coluna-1] == 0:
+                    if (jogada % 2+1) == 1:
+                        tabuleiro[linha-1][coluna-1] = jogador1
+                    else:
+                        tabuleiro[linha-1][coluna-1] = jogador2
+                else:
+                    print("Casa já está ocupada")
+                    sleep(1)
+                    jogada -= 1
+                jogada += 1
+
+            except IndexError:
+                print("Valor inválido")
+            else:
+
+                if ganhou():
+                    limpar_tela()
+                    imprime_tabuleiro()
+                    print(f"{'[ O ]' if jogada%2+1 == 1 else '[ X ]'} ganhou")
+                    # Caso rode no terminal, ele mantem a tela por 5 segundos antes de fechar o mesmo
+                    sleep(5)
+                    break
+                elif empate():
+                    limpar_tela()
+                    imprime_tabuleiro()
+                    print("Deu velha")
+                    sleep(5)
+                    break
+        limpar_tela()
+
+
+if __name__ == '__main__':
+    jogar()
