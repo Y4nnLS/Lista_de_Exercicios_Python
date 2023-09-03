@@ -3,6 +3,11 @@ from time import sleep
 
 
 def imprime_tabuleiro(tabuleiro):
+    """
+    Imprime o tabuleiro atualizado com o símbolo de cada jogador.
+    'X' é representado na cor vermelha e 'O' é representado na cor azul.
+    """
+
     for casa in tabuleiro:
         lista_formatada = ' | '.join(
             [f'\033[91mX\033[0m' if c == 'X' else f'\033[94mO\033[0m' if c == 'O' else str(c) for c in casa])
@@ -11,10 +16,17 @@ def imprime_tabuleiro(tabuleiro):
 
 
 def limpar_tela():
+    """
+    Limpa a tela do console
+    """
     os.system('cls')
 
 
 def ganhou(tabuleiro, jogador, linha, coluna):
+    """
+    Verifica se um jogador ganhou o jogo.
+    Ele retorna verdadeiro caso um dos jogadores ganhe a partida, caso contrário ele retorna Falso.
+    """
     num_aux = len(tabuleiro)
     if all(tabuleiro[linha][c] == jogador for c in range(num_aux)):
         return True
@@ -29,10 +41,22 @@ def ganhou(tabuleiro, jogador, linha, coluna):
 
 
 def empatou(tabuleiro):
+    """
+    Verifica se o jogo terminou em empate.
+    Ele retorna verdadeiro caso o jogo tenha um empate, caso contrário ele retorna Falso.
+    """
     return all(all(casa != ' ' for casa in linha) for linha in tabuleiro)
 
 
 def main():
+    """
+    Função main do jogo da velha.
+
+    Essa função inicia o jogo, solicita o tamanho do tabuleiro NxN, faz o gerenciamento das jogadas dos jogadores,
+    verifica se há um vencedor ou empate e imprime o resultado final.
+    """
+
+    # Inicializa as variáveis do jogo
     n = int(input("Digite a dimensão do tabuleiro (NxN): "))
     tabuleiro = [[" " for _ in range(n)] for _ in range(n)]
     jogador = 'X'
