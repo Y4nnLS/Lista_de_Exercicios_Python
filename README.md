@@ -5,7 +5,7 @@ Aluno: Yann Lucas Saito da Luz
 1. Crie uma versão do jogo da velha 4x4. As regras são as mesmas da versão 3x3.
 <p>Jogo da Velha em Python
 
-Este é um jogo da velha simples para dois jogadores. Ele permite que dois jogadores joguem alternadamente até que um deles vença ou haja um empate.
+Implementação básica de uma jogo da velha 4x4, seguindo as mesmas regras da versão 3x3. Ele permite que os dois jogadores joguem alternadamente até que um deles vença ou de velha.
 
 Estratégia:
 - O tabuleiro é representado como uma lista 4x4.
@@ -19,8 +19,9 @@ Instruções de uso:
 - Execute este arquivo para começar o jogo.
 - Os jogadores digitam as coordenadas para fazer suas jogadas.
 - As coordenadas vão de 1 a 4
-EXEMPLO:
-<img src="Imagens/Animação">
+##### EXEMPLO:
+<img src="assets/Animação.gif">
+</p>
 ## ex2.py
 ## ex3.py
 ## ex4.py
