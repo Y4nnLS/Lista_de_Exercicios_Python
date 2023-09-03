@@ -10,6 +10,8 @@ Implementação básica de uma jogo da velha 4x4, seguindo as mesmas regras da v
 Estratégia:
 - O tabuleiro é representado como uma lista 4x4.
 - Os jogadores são representados por 'X' e 'O'.
+
+Detalhamento das estruturas usadas:
 - A função `imprime_tabuleiro()` exibe o estado atual do tabuleiro.
 - A função `ganhou()` verifica se algum jogador venceu o jogo.
 - A função `empate()` verifica se o jogo terminou em empate.
